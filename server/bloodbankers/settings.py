@@ -27,6 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CORS_ORIGIN_WHITELIST=[
+    'http://localhost:5173',
+]
+
 
 # Application definition
 
@@ -127,6 +131,7 @@ USE_I18N = True
 
 USE_TZ = True
 
+AUTH_USER_MODEL='bloodbankers_app.CustomUser'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/

@@ -50,6 +50,9 @@ class Hospitalform(AbstractBaseUser):
     contact_number=models.IntegerField()
     hospital_email=models.EmailField(max_length=200,blank=True,null=True,unique=True)
     location=models.TextField(blank=True,null=True)
+    objects=CustomUserManager
+    USERNAME_FIELD='hospital_email'
+    REQUIRED_FIELDS=["hospital_name","contact_number"]
 
 
     def __str__(self):
@@ -57,9 +60,9 @@ class Hospitalform(AbstractBaseUser):
 
 
 class Donorprofile(models.Model):
-    first_name=models.CharField(max_length=50)
-    last_name=models.CharField(max_length=50)
-    email=models.EmailField(max_length=200,blank=True,null=True,unique=True)
+    # first_name=models.CharField(max_length=50)
+    # last_name=models.CharField(max_length=50)
+    # email=models.EmailField(max_length=200,blank=True,null=True,unique=True)
     phonenumber=models.IntegerField()
     occupation=models.CharField(max_length=200)
     address=models.TextField(blank=True,null=True)
@@ -67,8 +70,9 @@ class Donorprofile(models.Model):
     owner=models.ForeignKey(CustomUser,on_delete=models.CASCADE,default=None)
 
     def __str__(self):
-        return self.first_name+"       " +self.last_name
+        return f"{self.owner.first_name}'s donation details"
 
 
 
 
+    

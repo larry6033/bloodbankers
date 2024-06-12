@@ -28,14 +28,14 @@ class Registerhospitalserializer(serializers.ModelSerializer):
         fields=("id",'hospital_name',"contact_number",'hospital_email',"location") 
     def create(self,validated_data):
         user=self.Meta.model(**validated_data)
-        password=validated_data.pop("password")
-        user.set_password(password)
+        hospital_password=validated_data.pop("password")
+        user.set_password(hospital_password)
         user.save()
         return user    
     
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model=Donorprofile
-        fields=("id","user","subscription_plan")
+        fields=("id","occupation","phonenumber","address","birthday","owner")
         
     

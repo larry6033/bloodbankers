@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "../pages/Home";
+// import Homepage from "../pages/Home";
 import Layout from "../pages/Layout";
 import Notfound from "../pages/Notfound";
 function Router() {
@@ -10,10 +10,11 @@ function Router() {
           path="/"
           element={
             <Layout>
-              <Home />
+              {/* <Homepage /> */}
             </Layout>
           }
         />
+       
         <Route path="*" element={<Notfound />} />
       </Routes>
     </BrowserRouter>
