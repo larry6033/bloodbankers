@@ -3,9 +3,9 @@ import React from 'react';
 const Hero = () => {
   return (
     <div className="bg-gray-100 py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row items-center lg:items-start">
-          <div className="text-center lg:text-left lg:w-2/3">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="flex flex-col lg:flex-row items-center lg:items-start">
+        <div className="text-center lg:text-left lg:w-2/3">
             <h1 className="text-4xl font-bold text-gray-900">Be a Hero: Join Our Journey of Saving Lives</h1>
             <p className="mt-4 text-xl text-gray-600">Blood donation can be fun! We want to walk this journey with you.</p>
 
