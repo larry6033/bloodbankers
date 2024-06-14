@@ -1,12 +1,12 @@
 from django.core import serializers
 from rest_framework import  serializers
-from .models import CustomUser,Hospitalform,Donorprofile
+from .models import CustomUser,Hospitalform,Donorprofile, DonorFillingForm
 
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model=CustomUser
         fields=("id","first_name","last_name","email","password")
-        extra_kwargs={"password":{"write_only":True}}
+        extra_fields ={"password":{"write_only":True}}
     def create(self,validated_data):
         password=validated_data.pop("password")
         user=self.Meta.model(**validated_data)
@@ -17,25 +17,43 @@ class RegisterSerializer(serializers.ModelSerializer):
     
 
 
+
 class UserLoginSerializer(serializers.Serializer):
     email=serializers.EmailField()
     password=serializers.CharField(max_length=30)
     
     
+    
+    
 class Registerhospitalserializer(serializers.ModelSerializer):
     class Meta:
         model=Hospitalform   
-        fields=("id",'hospital_name',"contact_number",'hospital_email',"location") 
+        fields=("id","hospital_name","contact_number","hospital_email","location","password") 
+        extra_fields={"password":{"write_only":True}}
+
     def create(self,validated_data):
-        user=self.Meta.model(**validated_data)
-        hospital_password=validated_data.pop("password")
-        user.set_password(hospital_password)
-        user.save()
-        return user    
+        password=validated_data.pop("password")
+        hospital=self.Meta.model(**validated_data)
+        hospital.set_password(password)
+        hospital.save()
+        return hospital
+    
+    
+    
+class HospitalLoginSerializer(serializers.Serializer):
+    hospital_email=serializers.EmailField()
+    password=serializers.CharField(max_length=30)
+    
     
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
-        model=Donorprofile
+        model=Donorprofile 
         fields=("id","occupation","phonenumber","address","birthday","owner")
         
+    
+    
+class  FormSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=DonorFillingForm
+        fields=("id","weight","Last_date_donating","owner")
     

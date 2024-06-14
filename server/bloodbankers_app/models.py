@@ -37,7 +37,7 @@ class CustomUser(AbstractBaseUser):
     is_active=models.BooleanField(default=True)
     
 
-    objects=CustomUserManager
+    objects=CustomUserManager()
     USERNAME_FIELD='email'
     REQUIRED_FIELDS=["first_name","last_name"]
 
@@ -50,9 +50,10 @@ class Hospitalform(AbstractBaseUser):
     contact_number=models.IntegerField()
     hospital_email=models.EmailField(max_length=200,blank=True,null=True,unique=True)
     location=models.TextField(blank=True,null=True)
-    objects=CustomUserManager
+    
+    objects=CustomUserManager()
     USERNAME_FIELD='hospital_email'
-    REQUIRED_FIELDS=["hospital_name","contact_number"]
+    REQUIRED_FIELDS=["hospital_email","password"]
 
 
     def __str__(self):
@@ -73,6 +74,10 @@ class Donorprofile(models.Model):
         return f"{self.owner.first_name}'s donation details"
 
 
+class DonorFillingForm(models.Model):
+    Last_date_donating=models.DateField(blank=True,null=True)
+    weight=models.IntegerField()
+    owner=models.ForeignKey(Donorprofile,on_delete=models.CASCADE,default=None)
 
-
-    
+    def __str__(self):
+        return f"{self.owner.first_name}'s donation details"
