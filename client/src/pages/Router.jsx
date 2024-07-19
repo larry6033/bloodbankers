@@ -7,6 +7,7 @@ import Services from "../pages/Services";
 import BloodDrive from "../pages/BloodDrive";
 import Login from "../pages/Login"
 import Signup from "../pages/Signup";
+// import HospitalLogin
 function Router() {
   return (
     <BrowserRouter>
@@ -45,6 +46,15 @@ function Router() {
           element={
             <Layout>
               <Login/>
+              
+            </Layout>
+          }
+        />
+          <Route
+          path="/hospital"
+          element={
+            <Layout>
+              <HospitalLogin/>
               
             </Layout>
           }

@@ -28,7 +28,7 @@ class UserLoginSerializer(serializers.Serializer):
 class Registerhospitalserializer(serializers.ModelSerializer):
     class Meta:
         model=Hospitalform   
-        fields=("id","hospital_name","contact_number","hospital_email","location","password") 
+        fields=("id","hospital_name","contact_number","email","location","password") 
         extra_fields={"password":{"write_only":True}}
 
     def create(self,validated_data):
@@ -41,7 +41,7 @@ class Registerhospitalserializer(serializers.ModelSerializer):
     
     
 class HospitalLoginSerializer(serializers.Serializer):
-    hospital_email=serializers.EmailField()
+    email=serializers.EmailField()
     password=serializers.CharField(max_length=30)
     
     

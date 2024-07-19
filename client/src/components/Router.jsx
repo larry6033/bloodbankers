@@ -10,6 +10,8 @@ import DonorSignup from "../pages/Donorsignup";
 import Fillingform from "../pages/Fillingform";
 import Alldonors from "../pages/Alldonors";
 import Form from "../pages/Form";
+import Services from "../pages/Services"
+import HospitalLogin from "../pages/HospitalLogin"
 // import
 function Router() {
   return (
@@ -20,6 +22,15 @@ function Router() {
           element={
             <Layout>
               <Homepage />
+            </Layout>
+          }
+        />
+
+<Route
+          path="/hospitallogin"
+          element={
+            <Layout>
+              <HospitalLogin />
             </Layout>
           }
         />
@@ -40,6 +51,16 @@ function Router() {
             </Layout>
           }
         />
+
+<Route
+          path="/services"
+          element={
+            <Layout>
+              <Services/>
+            </Layout>
+          }
+        />
+
 
         <Route
           path="/singledonor"

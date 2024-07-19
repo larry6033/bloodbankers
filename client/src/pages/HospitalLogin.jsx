@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-function Loginregister() {
+function HospitalLogin() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const [formData, setFormData] = useState({
-    email: "",
+    hospital_email: "",
     password: "",
   });
 
@@ -16,16 +16,16 @@ function Loginregister() {
   }
   const getData = (e) => {
     setErrorMessage("");
-    const { email, password } = formData;
+    const { hospital_email, password } = formData;
 
-    if (!email || !password) {
+    if (!hospital_email || !password) {
       setErrorMessage("Kindly fill all the fields");
       return;
     } else {
       e.preventDefault();
       console.log(formData);
 
-      const url = "http://127.0.0.1:8000/api/login/";
+      const url = "http://127.0.0.1:8000/api/hospitallogin/";
       // const hospitalurl = "http://127.0.0.1:8000/api/hospitallogin/";
       const options = {
         method: "POST",
@@ -49,7 +49,7 @@ function Loginregister() {
         .then((data) => {
           console.log(data);
           if (data !== undefined) {
-            navigate("/form");
+            navigate("/alldonors");
           }
           
         })
@@ -69,9 +69,9 @@ function Loginregister() {
               <label className="sr-only">Email address</label>
               <input
                 id="email"
-                name="email"
+                name="hospital_email"
                 type="email"
-                autoComplete="email"
+                autoComplete="hospital_email"
                 className="relative block w-full px-3 py-2 border border-gray-300 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
                 placeholder="Email address"
                 onChange={handleLogin}
@@ -105,4 +105,4 @@ function Loginregister() {
     </div>
   );
 }
-export default Loginregister;
+export default HospitalLogin;

@@ -48,12 +48,12 @@ class CustomUser(AbstractBaseUser):
 class Hospitalform(AbstractBaseUser): 
     hospital_name=models.CharField(max_length=100)
     contact_number=models.IntegerField()
-    hospital_email=models.EmailField(max_length=200,blank=True,null=True,unique=True)
+    email=models.EmailField(max_length=200,blank=True,null=True,unique=True)
     location=models.TextField(blank=True,null=True)
     
     objects=CustomUserManager()
-    USERNAME_FIELD='hospital_email'
-    REQUIRED_FIELDS=["hospital_email","password"]
+    USERNAME_FIELD='email'
+    REQUIRED_FIELDS=["email","password"]
 
 
     def __str__(self):

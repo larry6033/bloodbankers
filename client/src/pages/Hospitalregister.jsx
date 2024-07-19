@@ -1,13 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 function Hospitalsignup() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const [formData, setFormData] = useState({
     hospital_name: "",
     contact_number: "",
-    hospital_email: "",
+    email: "",
     location: "",
     password: "",
   });
@@ -15,14 +14,13 @@ function Hospitalsignup() {
 
   function handleHospitalSignup(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    // navigate("/login")
   }
   const getData = (e) => {
     setErrorMessage("");
     const {
       hospital_name,
       contact_number,
-      hospital_email,
+      email,
       location,
       password,
     } = formData;
@@ -30,7 +28,7 @@ function Hospitalsignup() {
     if (
       !hospital_name ||
       !contact_number ||
-      !hospital_email ||
+      !email ||
       !location ||
       !password
     ) {
@@ -39,7 +37,7 @@ function Hospitalsignup() {
     } else {
       e.preventDefault();
       console.log(formData);
-      const url = "http://127.0.0.1:8000/api/register/";
+      const url = "http://127.0.0.1:8000/api/hospitalform/";
       const options = {
         method: "POST",
         headers: {
@@ -53,12 +51,12 @@ function Hospitalsignup() {
           // console.log(res)
           if (!res.ok) {
             return res.json().then((tell) => {
-              setErrorMessage(tell["hospital_email"][0]);
+              setErrorMessage(tell["email"][0]);
               console.log(tell);
             });
             // return res.json();
           }
-          navigate("/login");
+          navigate("/hospitallogin");
         })
         .then((data) => console.log(data))
         .catch((err) => {
@@ -83,7 +81,7 @@ function Hospitalsignup() {
             name="hospital_name"
             onChange={handleHospitalSignup}
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            required
+            // required
           />
         </div>
 
@@ -91,10 +89,10 @@ function Hospitalsignup() {
           <label className="block text-red-600">Hospital Email</label>
           <input
             type="email"
-            name="hospital_email"
+            name="email"
             onChange={handleHospitalSignup}
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            required
+            // required
           />
         </div>
         <div className="mb-4">
@@ -104,7 +102,7 @@ function Hospitalsignup() {
             name="contact_number"
             onChange={handleHospitalSignup}
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            required
+            // required
           />
         </div>
         <div className="mb-4">
@@ -114,27 +112,27 @@ function Hospitalsignup() {
             name="password"
             onChange={handleHospitalSignup}
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            required
+            // required
           />
         </div>
         <div className="mb-6">
           <label className="block text-red-600">Location</label>
           <input
-            type="password"
+            type="location"
             name="location"
             onChange={handleHospitalSignup}
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            required
+            // required
           />
         </div>
         <p className="text-red-600">{errorMessage}</p>
 
-      <Link to="/login">  <button
+        <button
           onClick={getData}
           className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           Sign Up
-        </button></Link>
+        </button>
       </form>
     </div>
   );

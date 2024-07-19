@@ -175,10 +175,10 @@ class HospitalLoginView(APIView):
        
         serializer=HospitalLoginSerializer(data=request.data)
         if serializer.is_valid():
-            email=serializer.validated_data.get("hospital_email")
+            email=serializer.validated_data.get("email")
             password=serializer.validated_data.get("password")
             try:
-                hospital=Hospitalform.objects.get(hospital_email=email)
+                hospital=Hospitalform.objects.get(email=email)
                 print(hospital)
             except Hospitalform.DoesNotExist:
                 hospital=None   

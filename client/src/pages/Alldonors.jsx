@@ -5,22 +5,60 @@ function Alldonors() {
   const [donors, setDonors] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    async function fetchDonors() {
-      try {
-        const response = await fetch("http://127.0.0.1:8000/api/donors/");
-        if (!response.ok) {
-          throw new Error("Failed to fetch donors");
-        }
-        const data = await response.json();
-        setDonors(data);
-      } catch (error) {
-        console.error("Error fetching donors:", error.message);
-        // Handle error - e.g., show a message to the user
+  // useEffect(() => {
+  //   async function fetchDonors() {
+  //     try {
+  //       const response = await fetch("http://127.0.0.1:8000/api/donors/");
+  //       // method: "POST",
+  //       // headers: {
+  //       //   "Content-Type": "application/json",
+  //       // },
+  //       // body: JSON.stringify(formData),
+  //       if (!response.ok) {
+  //         throw new Error("Failed to fetch donors");
+  //       }
+  //       const data = await response.json();
+  //       setDonors(data);
+  //     } catch (error) {
+  //       console.error("Error fetching donors:", error.message);
+  //     }
+  //   }
+  //   fetchDonors();
+  // }, []);
+
+
+  const url = "http://127.0.0.1:8000/api/donors/";
+  // const hospitalurl = "http://127.0.0.1:8000/api/hospitallogin/";
+  const options = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  };
+
+  fetch(url, options)
+    .then((res) => {
+      //  console.log(res)
+      if (!res.ok) {
+        return res.json().then((tell) => {
+          setErrorMessage(tell.message);
+          console.log(tell);
+        });
       }
-    }
-    fetchDonors();
-  }, []);
+      return res.json();
+    })
+    .then((data) => {
+      console.log(data);
+      if (data !== undefined) {
+        navigate("/alldonors");
+      }
+      
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+
 
   const handleDonorClick = (id) => {
     navigate(`/donor/${id}`);
