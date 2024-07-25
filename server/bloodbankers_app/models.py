@@ -64,20 +64,22 @@ class Donorprofile(models.Model):
     # first_name=models.CharField(max_length=50)
     # last_name=models.CharField(max_length=50)
     # email=models.EmailField(max_length=200,blank=True,null=True,unique=True)
-    phonenumber=models.IntegerField()
+    # phonenumber=models.IntegerField()
+    bloodgroup=models.CharField(max_length=3,blank=True, default='UNK')
     occupation=models.CharField(max_length=200)
     address=models.TextField(blank=True,null=True)
     birthday=models.DateField(blank=True,null=True)
+    Last_date_donating=models.DateField(blank=True,null=True)
+    weight=models.IntegerField()
     owner=models.ForeignKey(CustomUser,on_delete=models.CASCADE,default=None)
 
     def __str__(self):
         return f"{self.owner.first_name}'s donation details"
 
 
-class DonorFillingForm(models.Model):
-    Last_date_donating=models.DateField(blank=True,null=True)
-    weight=models.IntegerField()
-    owner=models.ForeignKey(Donorprofile,on_delete=models.CASCADE,default=None)
+# class DonorFillingForm(models.Model):
+   
+#     owner=models.ForeignKey(Donorprofile,on_delete=models.CASCADE,default=None)
 
-    def __str__(self):
-        return f"{self.owner.first_name}'s donation details"
+#     def __str__(self):
+#         return f"{self.owner.first_name}'s donation details"

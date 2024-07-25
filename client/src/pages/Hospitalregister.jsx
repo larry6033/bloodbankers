@@ -39,7 +39,7 @@ function Hospitalsignup() {
     } else {
       e.preventDefault();
       console.log(formData);
-      const url = "http://127.0.0.1:8000/api/register/";
+      const url = "http://127.0.0.1:8000/api/hospitalform/";
       const options = {
         method: "POST",
         headers: {
@@ -58,7 +58,7 @@ function Hospitalsignup() {
             });
             // return res.json();
           }
-          navigate("/login");
+          navigate("/hospitallogin");
         })
         .then((data) => console.log(data))
         .catch((err) => {
@@ -71,13 +71,13 @@ function Hospitalsignup() {
     <div className="flex flex-col justify-center items-center min-h-screen bg-gray-100 space-y-8">
       <form className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
         <div className="mb-4">
-          <h2 className="text-2xl font-bold mb-6 text-red-600">
+          <h2 className="text-2xl font-bold mb-6 text-blue-500 ">
             Hospital's signup form
           </h2>
           <p>Fill in this form and we will be in touch in a moment</p>
         </div>
-        <div className="mb-4">
-          <label className="block text-red-600">Hospital Name</label>
+        <div className="mb-4 mt-7">
+          <label className="block text-blue-500">Hospital Name</label>
           <input
             type="text"
             name="hospital_name"
@@ -87,8 +87,8 @@ function Hospitalsignup() {
           />
         </div>
 
-        <div className="mb-4">
-          <label className="block text-red-600">Hospital Email</label>
+        <div className="mb-4 mt-7">
+          <label className="block text-blue-500">Hospital Email</label>
           <input
             type="email"
             name="hospital_email"
@@ -97,8 +97,8 @@ function Hospitalsignup() {
             required
           />
         </div>
-        <div className="mb-4">
-          <label className="block text-red-600">Contact Number</label>
+        <div className="mb-4 mt-7">
+          <label className="block text-blue-500">Contact Number</label>
           <input
             type="contact"
             name="contact_number"
@@ -107,8 +107,8 @@ function Hospitalsignup() {
             required
           />
         </div>
-        <div className="mb-4">
-          <label className="block text-red-600">Password</label>
+        <div className="mb-4 mt-7">
+          <label className="block text-blue-500">Password</label>
           <input
             type="password"
             name="password"
@@ -117,10 +117,10 @@ function Hospitalsignup() {
             required
           />
         </div>
-        <div className="mb-6">
-          <label className="block text-red-600">Location</label>
+        <div className="mb-6 mt-7">
+          <label className="block text-blue-500">Location</label>
           <input
-            type="password"
+            // type="password"
             name="location"
             onChange={handleHospitalSignup}
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -129,12 +129,12 @@ function Hospitalsignup() {
         </div>
         <p className="text-red-600">{errorMessage}</p>
 
-      <Link to="/login">  <button
+     <button
           onClick={getData}
           className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           Sign Up
-        </button></Link>
+        </button>
       </form>
     </div>
   );

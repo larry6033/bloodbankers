@@ -10,6 +10,9 @@ import DonorSignup from "../pages/Donorsignup";
 import Fillingform from "../pages/Fillingform";
 import Alldonors from "../pages/Alldonors";
 import Form from "../pages/Form";
+import HospitalLogin from "../pages/HospitalLogin";
+import Donorboard from "../pages/Donorboard";
+import Singledonor from "../pages/Singledonor";
 // import
 function Router() {
   return (
@@ -31,9 +34,17 @@ function Router() {
             </Layout>
           }
         />
+        <Route
+          path="/hospitallogin"
+          element={
+            <Layout>
+              <HospitalLogin />
+            </Layout>
+          }
+        />
 
         <Route
-          path="/donorform"
+          path="/alldonors"
           element={
             <Layout>
               <Alldonors />
@@ -55,6 +66,14 @@ function Router() {
           element={
             <Layout>
               <DonorSignup />
+            </Layout>
+          }
+        />
+         <Route
+          path='/singledonor'
+          element={
+            <Layout>
+              <Singledonor />
             </Layout>
           }
         />
@@ -83,6 +102,14 @@ function Router() {
             </Layout>
           }
         />
+        <Route
+          path="/donorboard"
+          element={
+            <Layout>
+              <Donorboard />
+            </Layout>
+          }
+        />
 
         <Route path="*" element={<Notfound />} />
       </Routes>
@@ -90,3 +117,8 @@ function Router() {
   );
 }
 export default Router;
+
+
+
+
+// https://docs.google.com/spreadsheets/d/1AJoHnh0NOUjiyJvusXytFQ1OQsbNhyOFbX_P78VCEqI/edit?gid=173790465#gid=173790465

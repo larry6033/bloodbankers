@@ -8,14 +8,16 @@ path('register/',views.UserRegisterationView.as_view(), name='register'),
 
 path('login/',views.UserLoginView.as_view(), name='login'),
 path('hospitallogin/',views.HospitalLoginView.as_view(), name='Hospital'),
+path('donorprofile/',views.UserInfoView.as_view(), name='donorprofile'),
 
 path('hospitalform/',views.HospitalRegistrationView.as_view(), name='hospitalform'),
 
-path('donor/',views.DonorView.as_view(), name='donor'),
+path('donor/',views.DonorForm.as_view(), name='donor'),
 
 path('singledonor/',views.SingleDonorView.as_view(), name='singledonor'),
 
 path('donorform/',views.DonorFormView.as_view(), name='donors form'),
-path('donors/',views.Donors.as_view(), name='donors details'),
+path('donors/',views.DonorListView.as_view(), name='donors list'),
+path('donors/:id/',views.DonorDetailView.as_view(), name='donors_details'),
 
 ]

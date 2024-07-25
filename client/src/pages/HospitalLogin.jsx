@@ -1,13 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import { useState,useEffect } from "react";
-function Loginregister() {
+import { useState } from "react";
+function HospitalLogin() {
   const [errorMessage, setErrorMessage] = useState("");
+
   const [formData, setFormData] = useState({
-    email: "",
+    hospital_email: "",
     password: "",
   });
-
-  
 
   const navigate = useNavigate();
 
@@ -17,16 +16,16 @@ function Loginregister() {
   }
   const getData = (e) => {
     setErrorMessage("");
-    const { email, password } = formData;
+    const { hospital_email, password } = formData;
 
-    if (!email || !password) {
+    if (!hospital_email || !password) {
       setErrorMessage("Kindly fill all the fields");
       return;
     } else {
       e.preventDefault();
       console.log(formData);
 
-      const url = "http://127.0.0.1:8000/api/login/";
+      const url = "http://127.0.0.1:8000/api/hospitallogin/";
       const options = {
         method: "POST",
         headers: {
@@ -52,45 +51,48 @@ function Loginregister() {
             localStorage.setItem("access_token", data.access_token);
             localStorage.setItem("refresh_token", data.access_token);
 
-            navigate("/form");
+            navigate("/alldonors");
           }
         })
         .catch((err) => {
           console.log(err);
         });
     }
+    // if email==!
   };
+  // console.log(formData);
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md p-8 space-y-8 bg-white rounded shadow-md ">
-        <h2 className="text-2xl font-bold text-center text-blue-500">Login</h2>
+        <h2 className="text-2xl font-bold text-center  text-blue-500">Login</h2>
         <form className="mt-8 space-y-6 gap-4">
           <div className="rounded-md shadow-sm -space-y-px">
             <div className="my-7">
               <label className="sr-only">Email address</label>
               <input
                 id="email"
-                name="email"
+                name="hospital_email"
                 type="email"
-                autoComplete="email"
-                className="relative block w-full px-3 py-2 border border-gray-300 text-blue-500 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                autoComplete="hospital_email"
+                className="relative block w-full px-3 py-2 border border-gray-300 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
                 placeholder="Email address"
                 onChange={handleLogin}
               />
             </div>
-            <div className="my-7">
+            <div>
               <label className="sr-only">Password</label>
               <input
                 id="password"
                 name="password"
                 type="password"
                 autoComplete="current-password"
-                className="relative block w-full px-3 py-2 border text-blue-500 border-gray-300 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                className="relative block w-full px-3 py-2 border border-gray-300 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
                 onChange={handleLogin}
               />
             </div>
             <p className="text-red-600">{errorMessage}</p>
+
           </div>
           <div>
             <button
@@ -105,4 +107,4 @@ function Loginregister() {
     </div>
   );
 }
-export default Loginregister;
+export default HospitalLogin;

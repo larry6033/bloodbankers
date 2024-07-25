@@ -1,6 +1,6 @@
 from django.core import serializers
 from rest_framework import  serializers
-from .models import CustomUser,Hospitalform,Donorprofile, DonorFillingForm
+from .models import CustomUser,Hospitalform,Donorprofile
 
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
@@ -48,12 +48,12 @@ class HospitalLoginSerializer(serializers.Serializer):
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model=Donorprofile 
-        fields=("id","occupation","phonenumber","address","birthday","owner")
+        fields=("id","occupation","address","birthday" ,"weight","Last_date_donating","bloodgroup","owner")
         
     
     
-class  FormSerializer(serializers.ModelSerializer):
-    class Meta:
-        model=DonorFillingForm
-        fields=("id","weight","Last_date_donating","owner")
+# class  FormSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model=DonorFillingForm
+#         fields=("id","owner")
     
